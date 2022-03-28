@@ -8,7 +8,7 @@ const main = async() => {
     "title":"Shiden Network",
     "heading":["Pool Provider","LP", "Reward Tokens", "INFO"],
     "rows": [
-        //["WagyuSwap",     `<a href="wagyuswap"       >Various</a>`,      "WAG",       "https://exchange.wagyuswap.app" ]
+        ["Polkaex",     `<a href="polkaex"       >Various</a>`,      "PKEX",       "https://app.polkaex.io" ]
     ]
   }
 
