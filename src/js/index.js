@@ -670,4 +670,3 @@ window.web3Modal = new Web3Modal({
 });
 
 // eslint-disable-next-line no-console
-console.log(`NODE_ENV: ${process.env.NODE_ENV}`)
