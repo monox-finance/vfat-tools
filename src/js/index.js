@@ -5,20 +5,20 @@
 /** Directories available as aliases
  * all the paths within Dir in globals.js
  */
-import $ from "jquery"
-import {ethers} from "ethers"
-import * as ethcall from "ethcall"
+import $ from "jquery";
+import { ethers } from "ethers";
+import * as ethcall from "ethcall";
 
-//import dompurify from "dompurify"
+//import dompurify from 'dompurify'
 
-import "picturefill"
-import "utils/errors"
-import "utils/validation"
-import "utils/quick"
-import "core-js/stable"
-import "regenerator-runtime/runtime"
-import WalletConnectProvider from "@walletconnect/web3-provider"
-import Web3Modal from "web3modal"
+import 'picturefill'
+import 'utils/errors'
+import 'utils/validation'
+import 'utils/quick';
+import "core-js/stable";
+import "regenerator-runtime/runtime";
+import WalletConnectProvider from "@walletconnect/web3-provider";
+import Web3Modal from "web3modal";
 
 window.$ = $;
 window.ethers = ethers;
