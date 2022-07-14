@@ -8090,14 +8090,13 @@ async function main() {
   _print(
     `APR: Day ${apyDay}% (${amountVUnitDay} vUNIT) Week ${apyWeek}% (${amountVUnitWeek} vUNIT) Year ${apyYear}% (${amountVUnitYear} vUNIT)`
   )
-  const tokenList = lodash.uniqBy(uniswapTokens.tokens, 'address')
   const tokensListWithStatus = []
-  const filteredTokenList = lodash.uniqBy(
-    uniswapTokens.tokens.filter(t => t.chainId === (networkId || chainId)),
-    'address'
-  )
+  // const filteredTokenList = lodash.uniqBy(
+  //   uniswapTokens.tokens.filter(t => t.chainId === (networkId || chainId)),
+  //   'address'
+  // )
   const poolList = await getPoolList()
-  const filteredTokens = filteredTokenList
+  // const filteredTokens = filteredTokenList
 
   const getERC20Token = address => {
     const signer = App.provider.getSigner()
@@ -8116,7 +8115,8 @@ async function main() {
     const userTokens = Object.values({})
     const data = tokensListWithStatus.length
       ? tokensListWithStatus
-      : [...filteredTokens, ...userTokens, MAIN_CURRENCY, vCASHData, MONOData]
+      : [...userTokens, MAIN_CURRENCY, vCASHData, MONOData]
+    // ...filteredTokens,
 
     poolList?.forEach(async pool => {
       const index = data.findIndex(token => token?.address === pool?.token)
@@ -8152,26 +8152,13 @@ async function main() {
       }
     })
 
-    const keys = isAddressSearch ? ['address', 'symbol', 'name'] : ['symbol', 'name']
-    const existedData = matchSorter(data, address, {
-      keys,
-    })
-
-    if (existedData && existedData.length > 0) {
-      return lodash.uniqBy(existedData, 'address')
-    }
     if (onlySearchTokenList) {
       return []
     }
 
     try {
-      // if (!isAddressSearch) return []
       const searchedToken = getToken(address)
       if (searchedToken) {
-        // const fromList = [...filteredTokenList, vCASHData, MONOData].find(token => token?.address === address)
-        // if (fromList) {
-        //   return []
-        // }
         const searchedTokenName = await searchedToken?.name()
         const searchedTokenSymbol = await searchedToken?.symbol()
         const searchedTokenDecimals = await searchedToken?.decimals()
@@ -8360,7 +8347,6 @@ async function main() {
   }
   let farmTable = new AsciiTable().fromJSON(farmTableData)
   document.getElementById('log').innerHTML += farmTable + '<br />'
-
 
   let tableData = {
     title: 'Bond Details',
